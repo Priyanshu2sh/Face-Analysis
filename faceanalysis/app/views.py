@@ -22,7 +22,13 @@ def home(request):
             upload.save()
             uploaded_image_path = os.path.join(settings.MEDIA_ROOT, 'images', img_data.name)
             result = face_analysis(uploaded_image_path)
-            return render(request, 'app/result.html',{'result':result})
+            print(result)
+            print(type(result))
+            if result=='none':
+                messages.error(request,'No faces detected in the image!')
+                return HttpResponseRedirect('/')
+            else:
+                return render(request, 'app/result.html',{'result':result})
 
         elif request.FILES.get('imagefile'):
             uploaded_image=request.FILES['imagefile']
@@ -30,7 +36,11 @@ def home(request):
             upload.save()
             uploaded_image_path = os.path.join(settings.MEDIA_ROOT, 'images', uploaded_image.name)
             result = face_analysis(uploaded_image_path)
-            return render(request, 'app/result.html',{'result':result})
+            if result=='none':
+                messages.error(request,'No faces detected in the image!')
+                return HttpResponseRedirect('/')
+            else:
+                return render(request, 'app/result.html',{'result':result})
 
         else:
             messages.warning(request,'You have not uploaded any image')
@@ -190,8 +200,8 @@ def face_analysis(uploaded_image_path):
             output = [get_sentiment_description(predictions[0]), get_mental_activity_description(predictions[1]), get_sport_description(predictions[2]), get_competence_description(predictions[3]), get_forgiveness_description(predictions[4]), get_self_reliance_description(predictions[5]), get_generosity_description(predictions[6])]
             return output
         else:
-            output = 'No face detected in the image.'
+            output = 'none'
             return output
     else:
-        output = "Empty image or invalid image file."
+        output = 'none'
         return output

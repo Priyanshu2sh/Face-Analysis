@@ -153,6 +153,18 @@
       filter: brightness(90%);
       /* Decrease brightness on hover for feedback */
     }
+
+    .content-wrapper {
+    display: flex;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+}
+
+.alert {
+    width: 50%; /* Adjust width of alert as needed */
+    text-align: center; /* Center text within alert */
+}
+
   </style>
 </head>
 
@@ -177,6 +189,7 @@
     </form>
   </div>
 
+  <div class="content-wrapper">
     {% if messages %}
     {% for message in messages %}
     <div class="alert alert-warning auto-close" role="alert">
@@ -184,6 +197,7 @@
     </div>
     {% endfor %}
     {% endif %}
+  </div>
 
   <script>
     let fileInput = document.getElementById("myFile");
