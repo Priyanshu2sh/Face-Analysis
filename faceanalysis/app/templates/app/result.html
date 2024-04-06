@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Analysis Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+            background-color: #f4f4f4; /* Background color for the entire page */
+        }
+        .content {
+            background-color: #ffffff; /* Background color only for the content */
+            padding: 20px; /* Padding around the content */
+            border-radius: 10px; /* Rounded corners for the content */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+        .result-heading {
+            font-size: 24px; /* Example font size for the heading */
+            font-weight: bold; /* Bold font weight */
+            text-align: center; /* Center align the heading */
+            margin-bottom: 20px; /* Bottom margin for spacing */
+        }
+        .result-item {
+            margin-bottom: 5px; /* Spacing between items */
+            padding: 10px; /* Padding for each item */
+            border-radius: 5px; /* Rounded corners for each item */
+        }
+        /* Add CSS rules for different colors for each item */
+        .result-item:nth-child(odd) {
+            background-color: #e6f7ff; /* Light blue for odd items */
+        }
+        .result-item:nth-child(even) {
+            background-color: #ffe6e6; /* Light red for even items */
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1 class="result-heading">Face Analysis Results</h1>
+        {% for item in result %}
+            <div class="result-item">
+                {{ item }}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
